@@ -9,9 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     moods.forEach(mood => {
         mood.addEventListener('click', () => {
-            moods.forEach(m => m.classList.remove('bg-gray-200'));
-            mood.classList.toggle('bg-gray-200');
-            
             const time = new Date().toLocaleTimeString();
             const moodName = mood.id;
 
@@ -25,5 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 moodLog[moodName] = logEntry;
             }
         });
+    });
+
+    const card = document.getElementById('card');
+    const modeToggle = document.getElementById('mode-toggle');
+
+    modeToggle.addEventListener('change', () => {
+        if (modeToggle.checked) {
+            card.classList.replace('bg-gray-100', 'bg-gray-800');
+            card.classList.replace('text-black', 'text-white');
+        } else {
+            card.classList.replace('bg-gray-800', 'bg-gray-100');
+            card.classList.replace('text-white', 'text-black');
+        }
     });
 });

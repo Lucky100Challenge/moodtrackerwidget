@@ -8,10 +8,38 @@
       rel="stylesheet"
     />
     <title>Mood Tracker</title>
+    <style>
+      .toggle-checkbox:checked {
+        right: 0;
+        border-color: #68d391;
+      }
+      .toggle-checkbox:checked + .toggle-label {
+        background-color: #68d391;
+      }
+    </style>
   </head>
   <body class="bg-transparent flex justify-center items-center h-screen">
-    <div class="bg-transparent p-6 rounded-lg shadow-lg text-center">
-      <h1 class="text-2xl font-bold mb-4">Mood Tracker</h1>
+    <div
+      id="card"
+      class="bg-gray-100 p-6 rounded-lg shadow-lg text-center transition-colors duration-300 relative text-black"
+    >
+      <div class="absolute top-4 right-4">
+        <input
+          type="checkbox"
+          id="mode-toggle"
+          class="toggle-checkbox hidden"
+        />
+        <label
+          for="mode-toggle"
+          class="toggle-label block w-12 h-6 rounded-full bg-gray-300 cursor-pointer relative"
+        >
+          <div
+            class="w-6 h-6 bg-white rounded-full absolute top-0 transition-transform transform translate-x-0"
+          ></div>
+        </label>
+      </div>
+      <br>
+      <h3 class="text-1xl font-bold mb-4">Mood Tracker</h1>
       <div id="day" class="text-xl mb-4"></div>
       <div class="flex justify-center space-x-4 mb-4">
         <div id="happy" class="text-3xl cursor-pointer">😊</div>
