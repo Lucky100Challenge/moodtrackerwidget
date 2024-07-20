@@ -1,44 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const moodButtons = document.getElementById('moodButtons');
-    const historyList = document.getElementById('historyList');
-    const dayButtons = document.getElementById('daySelector').children;
-    const clearButton = document.getElementById('clearHistory');
-    let selectedDay = '';
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const currentDay = new Date().getDay();
+    document.getElementById('day').textContent = `Today is: ${days[currentDay]}`;
 
-    // Set default day
-    const setDefaultDay = () => {
-        if (dayButtons.length > 0) {
-            selectedDay = dayButtons[0].dataset.day;
-            dayButtons[0].classList.add('active');
-        }
-    };
-    setDefaultDay();
+    const moods = document.querySelectorAll('div.cursor-pointer');
+    const log = document.getElementById('log');
+    const moodLog = {};
 
-    // Handle mood button clicks
-    moodButtons.addEventListener('click', (event) => {
-        const mood = event.target.dataset.mood;
-        if (mood && selectedDay) {
-            addMoodToHistory(mood, selectedDay);
-        }
-    });
+    moods.forEach(mood => {
+        mood.addEventListener('click', () => {
+            moods.forEach(m => m.classList.remove('bg-gray-200'));
+            mood.classList.toggle('bg-gray-200');
+            
+            const time = new Date().toLocaleTimeString();
+            const moodName = mood.id;
 
-    // Handle day button clicks
-    Array.from(dayButtons).forEach(button => {
-        button.addEventListener('click', () => {
-            selectedDay = button.dataset.day;
-            Array.from(dayButtons).forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
+            if (moodLog[moodName]) {
+                log.removeChild(moodLog[moodName]);
+                delete moodLog[moodName];
+            } else {
+                const logEntry = document.createElement('div');
+                logEntry.textContent = `${time} - ${mood.textContent}`;
+                log.appendChild(logEntry);
+                moodLog[moodName] = logEntry;
+            }
         });
     });
-
-    // Handle clear button click
-    clearButton.addEventListener('click', () => {
-        historyList.innerHTML = '<li>No mood selected yet.</li>';
-    });
-
-    const addMoodToHistory = (mood, day) => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `${day}: ${mood}`;
-        historyList.appendChild(listItem);
-    };
 });
