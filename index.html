@@ -7,48 +7,110 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    <title>Mood Tracker</title>
+    <title>Mood Tracker Widget</title>
     <style>
-      .toggle-checkbox:checked {
-        right: 0;
-        border-color: #68d391;
+      body {
+        transition: background-color 0.3s, color 0.3s;
       }
-      .toggle-checkbox:checked + .toggle-label {
-        background-color: #68d391;
+      .card {
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .btn-black {
+        background-color: #000;
+        color: #fff;
+      }
+      .btn-black:hover {
+        background-color: #6b7280; /* Tailwind's gray-500 */
+      }
+      .btn-white {
+        background-color: #fff;
+        color: #000;
+      }
+      .btn-white:hover {
+        background-color: #e5e7eb; /* Tailwind's gray-200 */
+      }
+      .dark-mode .card {
+        background-color: #1f2937; /* Tailwind's gray-800 */
+        color: #fff;
+      }
+      .light-mode .card {
+        background-color: #f9fafb; /* Tailwind's gray-50 */
+        color: #000;
+      }
+      .dark-mode body {
+        background-color: #111827; /* Tailwind's gray-900 */
+        color: #fff;
+      }
+      .light-mode body {
+        background-color: #f9fafb; /* Tailwind's gray-50 */
+        color: #000;
+      }
+      .dark-mode .form-text {
+        color: #000000; /* Ensure form text is white in dark mode */
+      }
+      .light-mode .form-text {
+        color: #000; /* Ensure form text is black in light mode */
+      }
+      .dark-mode .label-text {
+        color: #fff; /* Ensure label text is white in dark mode */
+      }
+      .light-mode .label-text {
+        color: #000; /* Ensure label text is black in light mode */
+      }
+      .toggle-btn {
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .dark-mode .toggle-btn {
+        color: #fff;
+      }
+      .light-mode .toggle-btn {
+        color: #000;
       }
     </style>
   </head>
-  <body class="bg-transparent flex justify-center items-center h-screen">
-    <div
-      id="card"
-      class="bg-gray-100 p-6 rounded-lg shadow-lg text-center transition-colors duration-300 relative text-black"
-    >
-      <div class="absolute top-4 right-4">
-        <input
-          type="checkbox"
-          id="mode-toggle"
-          class="toggle-checkbox hidden"
-        />
-        <label
-          for="mode-toggle"
-          class="toggle-label block w-12 h-6 rounded-full bg-gray-300 cursor-pointer relative"
+  <body class="light-mode">
+    <div class="p-4 max-w-lg mx-auto">
+      <div
+        class="card p-4 mb-4 border border-gray-300 rounded-md shadow-md relative"
+      >
+        <button
+          id="toggleMode"
+          class="absolute top-2 right-2 toggle-btn bg-gray-200 px-4 py-2 rounded-md"
         >
-          <div
-            class="w-6 h-6 bg-white rounded-full absolute top-0 transition-transform transform translate-x-0"
-          ></div>
-        </label>
+          🌞
+        </button>
+        <h1 class="text-2xl font-bold mb-4">Mood Tracker</h1>
+        <form id="moodForm" class="space-y-4">
+          <div>
+            <label
+              for="mood"
+              class="block text-sm font-medium form-text label-text"
+              >Mood</label
+            >
+            <select
+              id="mood"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm form-text"
+            >
+              <option value="happy">Happy</option>
+              <option value="sad">Sad</option>
+              <option value="angry">Angry</option>
+              <option value="anxious">Anxious</option>
+              <option value="neutral">Neutral</option>
+            </select>
+          </div>
+          <button
+            type="submit"
+            class="btn-black px-4 py-2 rounded-md text-sm font-medium"
+          >
+            Log Mood
+          </button>
+        </form>
       </div>
-      <br>
-      <h3 class="text-1xl font-bold mb-4">Mood Tracker</h1>
-      <div id="day" class="text-xl mb-4"></div>
-      <div class="flex justify-center space-x-4 mb-4">
-        <div id="happy" class="text-3xl cursor-pointer">😊</div>
-        <div id="sad" class="text-3xl cursor-pointer">😢</div>
-        <div id="angry" class="text-3xl cursor-pointer">😡</div>
-        <div id="calm" class="text-3xl cursor-pointer">😌</div>
+      <div id="moodLog" class="space-y-4">
+        <!-- Mood logs will be dynamically added here -->
       </div>
-      <div id="log" class="text-lg mt-4"></div>
     </div>
-    <script src="script.js"></script>
+    <script src="mood-tracker.js"></script>
   </body>
 </html>
