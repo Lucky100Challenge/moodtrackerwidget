@@ -50,7 +50,7 @@
         color: #000;
       }
       .dark-mode .form-text {
-        color: #fff; /* Ensure form text is white in dark mode */
+        color: #000000; /* Ensure form text is white in dark mode */
       }
       .light-mode .form-text {
         color: #000; /* Ensure form text is black in light mode */
@@ -61,6 +61,7 @@
       .light-mode .label-text {
         color: #000; /* Ensure label text is black in light mode */
       }
+
       .toggle-btn {
         cursor: pointer;
         transition: background-color 0.3s, color 0.3s;
@@ -72,6 +73,7 @@
       .light-mode .toggle-btn {
         color: #000;
       }
+
       .btn-reset {
         background-color: transparent; /* Tailwind's yellow-400 */
         color: #424242;
@@ -79,6 +81,16 @@
       .btn-reset:hover {
         background-color: #000000; /* Tailwind's yellow-500 */
         color: #fff;
+      }
+
+      .dark-mode .btn-reset {
+        color: #fff;
+      }
+      .dark-mode .fa-moon {
+        color: #000000; /* Ensure the moon icon is white in dark mode */
+      }
+      .light-mode .fa-moon {
+        color: #000; /* Ensure the moon icon is black in light mode */
       }
     </style>
   </head>
