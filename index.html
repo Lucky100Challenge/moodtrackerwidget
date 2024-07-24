@@ -50,7 +50,7 @@
         color: #000;
       }
       .dark-mode .form-text {
-        color: #000000; /* Ensure form text is white in dark mode */
+        color: #fff; /* Ensure form text is white in dark mode */
       }
       .light-mode .form-text {
         color: #000; /* Ensure form text is black in light mode */
@@ -72,9 +72,13 @@
       .light-mode .toggle-btn {
         color: #000;
       }
-
-      .dark-mode .fa-moon {
-        color: #000;
+      .btn-reset {
+        background-color: transparent; /* Tailwind's yellow-400 */
+        color: #424242;
+      }
+      .btn-reset:hover {
+        background-color: #000000; /* Tailwind's yellow-500 */
+        color: #fff;
       }
     </style>
   </head>
@@ -92,6 +96,10 @@
         <h1 class="text-2xl font-bold mb-4">Mood Tracker</h1>
         <form id="moodForm" class="space-y-4">
           <div>
+            <p id="dayOfWeek" class="text-lg font-smnall">
+              Today is: <span id="dayName"></span>
+            </p>
+            <br />
             <label
               for="mood"
               class="block text-sm font-medium form-text label-text"
@@ -108,12 +116,21 @@
               <option value="neutral">Neutral</option>
             </select>
           </div>
-          <button
-            type="submit"
-            class="btn-black px-4 py-2 rounded-md text-sm font-medium"
-          >
-            Log Mood
-          </button>
+          <div class="flex space-x-4">
+            <button
+              type="submit"
+              class="btn-black px-4 py-2 rounded-md text-sm font-medium"
+            >
+              Log Mood
+            </button>
+            <button
+              type="button"
+              id="resetButton"
+              class="btn-reset px-4 py-2 rounded-md text-sm font-medium"
+            >
+              Reset Logs
+            </button>
+          </div>
         </form>
       </div>
       <div id="moodLog" class="space-y-4">

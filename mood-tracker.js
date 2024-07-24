@@ -1,8 +1,18 @@
+document.addEventListener('DOMContentLoaded', function() {
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const now = new Date();
+  const dayOfWeek = daysOfWeek[now.getDay()]; // Get the day of the week
+
+  document.getElementById('dayName').textContent = dayOfWeek;
+});
+
 document.getElementById('moodForm').addEventListener('submit', function(event) {
   event.preventDefault();
   
   const mood = document.getElementById('mood').value;
   const now = new Date();
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const dayOfWeek = daysOfWeek[now.getDay()]; // Get the day of the week
   const formattedDate = now.toLocaleDateString();
   const formattedTime = now.toLocaleTimeString();
   
@@ -12,7 +22,7 @@ document.getElementById('moodForm').addEventListener('submit', function(event) {
   logItem.className = 'card p-4 border border-gray-300 rounded-md shadow-md';
   logItem.innerHTML = `
     <h2 class="text-xl font-semibold">Mood: ${mood}</h2>
-    <p class="text-sm">Logged on: ${formattedDate} at ${formattedTime}</p>
+    <p class="text-sm">Logged on: ${dayOfWeek}, ${formattedDate} at ${formattedTime}</p>
   `;
   
   moodLog.appendChild(logItem);
@@ -35,4 +45,8 @@ document.getElementById('toggleMode').addEventListener('click', function() {
     icon.classList.remove('fa-moon');
     icon.classList.add('fa-sun');
   }
+});
+
+document.getElementById('resetButton').addEventListener('click', function() {
+  document.getElementById('moodLog').innerHTML = '';
 });
